@@ -9,6 +9,32 @@ var numbers = ["1","2","3","4","5","6","7","8","9","0"];
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
+function generatePassword() {
+  var password = "";
+  for(var i = 0; i < characterLength; i++) {
+    var randomIndex = Math.floor(Math.random() * choice.length);
+    password = password + choice[randomIndex];
+
+  }
+  return password;
+}
+
+// Prompt the user for the password criteria
+function getPrompts() {
+  choice = [];
+
+  characterLength = parseInt(prompt("How many characters would you like your password to be? 8 - 128"));
+
+  //if less than 8 or more than 128 (false)
+  if(isNaN(characterLength) || characterLength < 8 || characterLength > 128) {
+    alert("Error, Character length must be a number 8 - 128. Please try again.");
+    return false;
+  }
+
+  //if choices meet criteria (true)
+  
+}
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
