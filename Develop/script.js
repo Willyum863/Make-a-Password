@@ -12,7 +12,7 @@ var generateBtn = document.querySelector("#generate");
 function generatePassword() {
   var password = "";
   for(var i = 0; i < characterLength; i++) {
-    var randomIndex = Math.floor(Math.random() * options.length);
+    var Index = Math.floor(Math.random() * options.length);
     password = password + options[Index];
 
   }
@@ -20,12 +20,12 @@ function generatePassword() {
 }
 
 // Prompt the user for the password criteria
-function getPrompts() {
+function showPrompts() {
   options = [];
 
   characterLength = parseInt(prompt("How many characters would you like your password to be? 8 - 128"));
 
-  //if less than 8 or more than 128 (false)
+  //if less than 8 or more than 128 (false) Error message
   if(isNaN(characterLength) || characterLength < 8 || characterLength > 128) {
     alert("Error, Character length must be a number 8 - 128. Please try again.");
     return false;
@@ -50,11 +50,13 @@ function getPrompts() {
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  var truePrompts = showPrompts();
+  if(truePrompts){ 
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
+  }
 }
 
 // Add event listener to generate button
